@@ -25,8 +25,8 @@ func main() {
 
 	// Route handles & endpoints
 	r.HandleFunc("/n/{vid_id}", Index)
-	r.HandleFunc("/api/anotations/{vid_id}", AnotationFetch).Methods("GET")
-	r.HandleFunc("/api/anotations/{vid_id}", AnotationInsert).Methods("POST")
+	r.HandleFunc("/api/annotations/{vid_id}", AnotationFetch).Methods("GET")
+	r.HandleFunc("/api/annotations/{vid_id}", AnotationInsert).Methods("POST")
 
 	// serve files too!
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./web")))

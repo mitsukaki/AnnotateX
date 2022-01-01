@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="/css/notations.css">
+    <link rel="stylesheet" href="/css/theme_switch.css">
     <link rel="stylesheet" href="/css/index.css">
-    <title>Anotex</title>
+    <title>Annotex</title>
 </head>
 <body>
     <div class="container">
@@ -14,14 +15,17 @@
         <div id="player"></div>
         <div class="notation-wrapper">
             <div id="notations">
-                <p class="header">ANOTATIONS</p>
-                <div class="notation">
-                    <p class="timestamp">@4:05</p>
-                    <p class="note">Good slaying bruv</p>
+                <div class="notation-header">
+                    <p class="header">ANNOTATIONS</p>
+                    <label id="switch" class="switch">
+                        <input type="checkbox" onchange="toggleTheme()" id="slider">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
             </div>
         </div>
     </div>
+    <script src="/js/theme.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/ytloader.js"></script>
     <script src="/js/notations.js"></script>

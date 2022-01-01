@@ -24,7 +24,8 @@ function onYouTubeIframeAPIReady() {
 
 // call back function for player ready event
 function onPlayerReady(event) {
-    event.target.playVideo();
+    // update the page title
+    document.title = 'Annotatex | ' + event.target.getVideoData().title;
 }
 
 // callback for video playback state changes

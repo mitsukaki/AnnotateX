@@ -1,17 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Quicksand:wght@300;700&display=swap');
 
-body {
+.theme-light {
+--color-background: #ffffff;
+--color-header: #2f2f2f;
+--color-timestamp: #4f4f4f;
+--color-notation: #f2f2f2;
+--color-text: #000000;
+}
+
+.theme-dark {
+--color-background: #111;
+--color-header: #aaa;
+--color-timestamp: #eaeaea;
+--color-notation: #222;
+--color-text: #eaeaea;
+}
+
+html, body {
     font-family: 'Quicksand', sans-serif;
+    line-height: 1;
 }
 
 p {
     margin: 0;
+    color: var(--color-text);
 }
 
 .container {
     display: flex;
     flex-flow: column;
     height: 100vh;
+    background-color: var(--color-background);
 }
 
 #player {
