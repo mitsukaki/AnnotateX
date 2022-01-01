@@ -10,11 +10,8 @@
 
 #notations .header {
     margin: 1rem;
-    font-family: 'Oswald', sans-serif;
     font-size: 2rem;
-    font-weight: bold;
     margin-bottom: 0.5em;
-    color: var(--color-header);
 }
 
 #notations .notation {
@@ -31,11 +28,6 @@
     margin-bottom: 0.5rem;
 }
 
-.notation-box {
-    display: flex;
-    margin: 1rem;
-}
-
 .post {
     font-family: 'Oswald', sans-serif;
     width: 4rem;
@@ -43,18 +35,4 @@
     border-width: 0;
     background-color: var(--color-post-text);
     color: var(--color-post-button);
-}
-
-#note-input {
-    flex: 1 2 0px;
-    min-width: 0px;
-    border-width: 0;
-    border-radius: 0;
-    padding: 0.5rem;
-    background-color: var(--color-notation);
-    color: var(--color-text);
-}
-
-*:focus {
-    outline: none;
 }

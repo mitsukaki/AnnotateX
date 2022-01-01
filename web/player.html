@@ -13,21 +13,23 @@
     <title>Annotex</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container player-container">
         <!-- The youtube <iframe> (and video player) will replace this <div> tag. -->
         <div id="player"></div>
         <!-- The annotation panel -->
         <div class="notation-wrapper">
             <div id="notations">
                 <div class="notation-header">
-                    <p class="header">ANNOTATE-X</p>
+                    <p class="header">
+                        <a href="/index.html">ANNOTATE-X</a>
+                    </p>
                     <label id="switch" class="switch">
                         <input type="checkbox" onchange="toggleTheme()" id="slider">
                         <span class="slider round"></span>
                     </label>
                 </div>
-                <div class="notation-box">
-                    <input type="text" id="note-input" placeholder="Enter note...">
+                <div class="combo-input">
+                    <input type="text" id="combo-text" placeholder="Enter note...">
                     <button class="post" onclick="postNotation()">POST</button>
                 </div>
                 <div id="notation-anchor"></div>
@@ -35,7 +37,7 @@
         </div>
     </div>
     <script src="/js/theme.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="/js/player.js"></script>
     <script src="/js/ytloader.js"></script>
     <script src="/js/notations.js"></script>
 </body>

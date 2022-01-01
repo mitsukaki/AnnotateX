@@ -28,11 +28,45 @@ p {
     color: var(--color-text);
 }
 
+button {
+    min-width: 0px;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0.5rem;
+    background-color: var(--color-notation);
+    color: var(--color-text);
+}
+
+input[type=text] {
+    font-family: 'Oswald', sans-serif;
+    width: 4rem;
+    border-radius: 0;
+    border-width: 0;
+    padding: 1rem;
+    background-color: var(--color-post-text);
+    color: var(--color-post-button);
+}
+
+.header {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    color: var(--color-header);
+}
+
+.header a {
+    color: var(--color-header);
+    text-decoration: none;
+}
+
 .container {
     display: flex;
     flex-flow: column;
     height: 100vh;
     background-color: var(--color-background);
+}
+
+.player-container {
+    flex-flow: column !important;
 }
 
 #player {
@@ -45,9 +79,35 @@ p {
     flex-grow: 1;
 }
 
+.combo-input {
+    display: flex;
+    margin: 1rem;
+}
+
+#combo-text {
+    flex: 1 2 0px;
+}
+
+.create {
+    width: 20vw;
+}
+
+.made-with-heart a {
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+.heart {
+    font-size: larger;
+}
+
+*:focus {
+    outline: none;
+}
+
 @media only screen and (orientation: landscape) {
-    .container {
-        flex-flow: row;
+    .player-container {
+        flex-flow: row !important;
     }
 
     #player {

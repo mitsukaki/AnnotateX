@@ -60,7 +60,7 @@ function getNoteTime(time) {
 
 function postNotation() {
     // get input text
-    let text = document.getElementById('note-input').value;
+    let text = document.getElementById('combo-text').value;
 
     // get the video id
     let videoId = getPathItem(2);
@@ -83,7 +83,7 @@ function postNotation() {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // clear the input text
-            document.getElementById('note-input').value = '';
+            document.getElementById('combo-text').value = '';
 
             // insert the notation into the array
             ANNOTATIONS.push(notation);

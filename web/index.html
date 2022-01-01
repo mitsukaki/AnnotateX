@@ -4,12 +4,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/theme_switch.css">
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/center.css">
     <title>Annotex</title>
 </head>
 <body>
-    <div>
-        <h1 class="header">Annotex</h1>
+    <div class="container">
+        <div class="top-bar">
+            <label id="switch" class="switch">
+                <input type="checkbox" onchange="toggleTheme()" id="slider">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="center">
+            <h1 class="header">ANNOTATE-X</h1>
+            <div class="combo-input create">
+                <input type="text" id="combo-text" placeholder="Enter Youtube URL...">
+                <button class="create-button" onclick="create()">Go!</button>
+            </div>
+            <!-- made with heart -->
+            <div class="made-with-heart">
+                <p>Made with <span class="heart">❤</span> by
+                    <a href="https://github.com/mitsukaki" target="_blank">Mitsukaki</a>
+                    (QuessX)
+                </p>
+            </div>
+        </div>
     </div>
+    <script src="/js/theme.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>
