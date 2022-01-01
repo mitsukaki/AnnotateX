@@ -1,0 +1,15 @@
+.header {
+    font-family: 'Quicksand', sans-serif;
+}
+
+#player {
+    width: 100vw;
+    height: 100vw;
+}
+
+@media only screen and (orientation: landscape) {
+    #player {
+        width: 100vh;
+        height: 100vh;
+    }
+}
