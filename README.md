@@ -1,2 +1,2 @@
 # AnotateX
-Simlpe service for anotating youtube videos/clips.
+Simple service for anotating youtube videos/clips.
