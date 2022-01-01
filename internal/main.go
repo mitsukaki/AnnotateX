@@ -33,9 +33,9 @@ func main() {
 
 	http.Handle("/", r)
 
-	// listen on port 3300
-	log.Println("Listening on :3300...")
-	err = http.ListenAndServe(":3300", nil)
+	// listen on port 80
+	log.Println("Listening on :80...")
+	err = http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
