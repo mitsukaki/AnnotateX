@@ -1,4 +1,5 @@
 // on document load
+var ANNOTATIONS;
 window.addEventListener('DOMContentLoaded', (event) => {
     // make REST request to get the anotations for this video ID
     let videoId = getPathItem(2);
@@ -6,8 +7,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     xhr.open('GET', '/api/annotations/' + videoId, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
-            let annotations = JSON.parse(xhr.responseText);
-            renderAnotations(annotations);
+            ANNOTATIONS = JSON.parse(xhr.responseText);
+            renderAnotations(ANNOTATIONS);
         } else {
             // print the error
             console.log(xhr.statusText);
@@ -20,17 +21,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
     xhr.send();
 });
 
-function renderAnotations(annotations) {
+function renderAnotations() {
     // get the anotation container
-    let container = document.getElementById('notations');
+    let container = document.getElementById('notation-anchor');
+
+    // empty the container
+    container.innerHTML = '';
 
     // create a new div for each anotation
-    for (let i = 0; i < annotations.length; i++) {
+    for (let i = 0; i < ANNOTATIONS.length; i++) {
         // create note div
         let note = `
-            <div class="notation">
-                <p class="timestamp">@${ getNoteTime(annotations[i].Time) }</p>
-                <p class="note">${ annotations[i].Text }</p>
+            <div class="notation" onClick="seekToNote(${ i })">
+                <p class="timestamp">@${ getNoteTime(ANNOTATIONS[i].Time) }</p>
+                <p class="note">${ ANNOTATIONS[i].Text }</p>
             </div>
         `;
 
@@ -40,6 +44,9 @@ function renderAnotations(annotations) {
 }
 
 function getNoteTime(time) {
+    // convert time from float to integer
+    time = Math.floor(time);
+
     // convert seconds to minutes and seconds
     let minutes = Math.floor(time / 60);
     let seconds = time % 60;
@@ -49,4 +56,83 @@ function getNoteTime(time) {
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
     return `${ minutes }:${ seconds }`;
+}
+
+function postNotation() {
+    // get input text
+    let text = document.getElementById('note-input').value;
+
+    // get the video id
+    let videoId = getPathItem(2);
+
+    // get the current time
+    let time = player.getCurrentTime();
+
+    // create the notation object
+    let notation = {
+        Time: time,
+        Duration: 5,
+        Text: text,
+        Uuid: getUUID()
+    };
+
+    // make REST request to post the notation
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/annotations/' + videoId, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // clear the input text
+            document.getElementById('note-input').value = '';
+
+            // insert the notation into the array
+            ANNOTATIONS.push(notation);
+
+            // sort the array
+            ANNOTATIONS.sort((a, b) => {
+                return a.Time - b.Time
+            });
+
+            // render the anotations
+            renderAnotations();
+
+            // find the index of the annotation in the annotations array
+            let index = ANNOTATIONS.findIndex(x => x.Uuid === notation.Uuid);
+
+            // get the child of the notation anchor at that index
+            let child = document.getElementById('notation-anchor').children[index];
+            
+            // scroll to the child
+            child.scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else {
+            // print the error
+            console.log(xhr.statusText);
+
+            // alert the user that there was an error
+            alert('There was an error posting the notation.');
+        }
+    };
+
+    xhr.send(JSON.stringify([notation]));
+}
+
+function seekToNote(index) {
+    // get the time of the note
+    let time = ANNOTATIONS[index].Time;
+
+    // seek to the time
+    player.seekTo(time);
+
+    // play the video
+    player.playVideo();
+
+    // scroll the note to the top
+    let child = document.getElementById('notation-anchor').children[index];
+    child.scrollIntoView({
+        behavior: 'smooth'
+    });
+
+    console.log("called");
 }

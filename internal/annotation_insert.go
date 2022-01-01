@@ -9,12 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type Anotation struct {
-	Time     int
-	Duration int
-	Text     string
-}
-
 func AnotationInsert(w http.ResponseWriter, r *http.Request) {
 	// get the video id from the url
 	vars := mux.Vars(r)

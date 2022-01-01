@@ -1,19 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Quicksand:wght@300;700&display=swap');
-
 .theme-light {
---color-background: #ffffff;
---color-header: #2f2f2f;
---color-timestamp: #4f4f4f;
---color-notation: #f2f2f2;
---color-text: #000000;
+    --color-background: #ffffff;
+    --color-header: #2f2f2f;
+    --color-timestamp: #4f4f4f;
+    --color-notation: #f2f2f2;
+    --color-post-text: #bfbfbf;
+    --color-post-button: #515151;
+    --color-text: #000000;
 }
 
 .theme-dark {
---color-background: #111;
---color-header: #aaa;
---color-timestamp: #eaeaea;
---color-notation: #222;
---color-text: #eaeaea;
+    --color-background: #111;
+    --color-header: #aaa;
+    --color-timestamp: #eaeaea;
+    --color-notation: #222;
+    --color-post-text: #5e5e5e;
+    --color-post-button: #eaeaea;
+    --color-text: #eaeaea;
 }
 
 html, body {
