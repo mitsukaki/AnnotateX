@@ -1,15 +1,40 @@
-.header {
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Quicksand:wght@300;700&display=swap');
+
+body {
     font-family: 'Quicksand', sans-serif;
+}
+
+p {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
 }
 
 #player {
     width: 100vw;
     height: 100vw;
+    flex-shrink: 0;
+}
+
+.notation-wrapper {
+    flex-grow: 1;
 }
 
 @media only screen and (orientation: landscape) {
+    .container {
+        flex-flow: row;
+    }
+
     #player {
         width: 100vh;
+        height: 100vh;
+    }
+
+    .notation-wrapper {
         height: 100vh;
     }
 }

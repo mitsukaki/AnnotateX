@@ -10,6 +10,7 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/n/{vid_id}", Index)
+	r.HandleFunc("/n/{vid_id}/{anotation_id}", Index)
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./web")))
 	http.Handle("/", r)
 
