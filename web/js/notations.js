@@ -144,16 +144,27 @@ function pauseVideo() {
 
 // pause and play with space
 let paused = false;
-document.body.onkeyup = function (e) {
-    // space bar to pause and play
-    if (e.keyCode == 32) {
-        if (paused) player.play();
-        else player.pauseVideo();
-
-        paused = !paused;
+document.body.onkeyup = function (e){
+    // if we are typing
+    if (document.activeElement.id == "combo-text") {
+        // enter key posts notation
+        if (e.keyCode == 13) {
+            postNotation();
+            document.activeElement.blur();
+        }
     }
-    // enter key posts notation
-    else if (e.keyCode == 13) {
-        postNotation();
+    // we are watching video
+    else {
+        // space bar to pause and play
+        if (e.keyCode == 32) {
+            if (paused) player.playVideo();
+            else player.pauseVideo();
+
+            paused = !paused;
+        }
+        // enter to focus input on text (and start typing)
+        else if (e.keyCode == 13) {
+            document.getElementById("combo-text").focus();
+        }
     }
 }
