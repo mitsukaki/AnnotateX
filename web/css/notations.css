@@ -36,3 +36,15 @@
     background-color: var(--color-post-text);
     color: var(--color-post-button);
 }
+
+.edit-code-box {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.edit-code {
+    font-weight: bold;
+}

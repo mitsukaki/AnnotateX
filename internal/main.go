@@ -24,7 +24,7 @@ func main() {
 	r := mux.NewRouter()
 
 	// Route handles & endpoints
-	r.HandleFunc("/n/{vid_id}", Index)
+	r.HandleFunc("/y/{vid_id}", Index)
 	r.HandleFunc("/api/annotations/{vid_id}", AnotationFetch).Methods("GET")
 	r.HandleFunc("/api/annotations/{vid_id}", AnotationInsert).Methods("POST")
 

@@ -62,6 +62,9 @@ function postNotation() {
     // get input text
     let text = document.getElementById('combo-text').value;
 
+    // avoid blanks
+    if (text.length == 0) return;
+
     // get the video id
     let videoId = getPathItem(2);
 
@@ -122,17 +125,35 @@ function seekToNote(index) {
     // get the time of the note
     let time = ANNOTATIONS[index].Time;
 
-    // seek to the time
-    player.seekTo(time);
+    // seek to 5 seconds before the time
+    player.seekTo((time - 5) > 0 ? time - 5 : 0);
 
     // play the video
     player.playVideo();
 
-    // scroll the note to the top
-    let child = document.getElementById('notation-anchor').children[index];
-    child.scrollIntoView({
-        behavior: 'smooth'
-    });
+    // // scroll the note to the top
+    // let child = document.getElementById('notation-anchor').children[index];
+    // child.scrollIntoView({
+    //     behavior: 'smooth'
+    // });
+}
 
-    console.log("called");
+function pauseVideo() {
+    player.pauseVideo();
+}
+
+// pause and play with space
+let paused = false;
+document.body.onkeyup = function (e) {
+    // space bar to pause and play
+    if (e.keyCode == 32) {
+        if (paused) player.play();
+        else player.pauseVideo();
+
+        paused = !paused;
+    }
+    // enter key posts notation
+    else if (e.keyCode == 13) {
+        postNotation();
+    }
 }
