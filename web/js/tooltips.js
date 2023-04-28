@@ -3,6 +3,10 @@ tippy('#info', {
         <span class="heavy">SHORTCUTS</span>
         <table>
             <tr>
+                <th>Enter</th>
+                <td>Save Note</td>
+            </tr>
+            <tr>
                 <th>Left</th>
                 <td>Rewind 5s</td>
             </tr>
@@ -23,6 +27,8 @@ tippy('#info', {
                 <td>Slow Down</td>
             </tr>
         </table>
+        <br>video <span class="heavy">pauses automatically</span><br> when you type.
+        <br>
         <br>made by <span class="heavy">mitsukaki</span>.
     `,
     allowHTML: true,
