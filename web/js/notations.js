@@ -62,6 +62,8 @@ function postNotation() {
     // get input text
     let text = document.getElementById('combo-text').value;
 
+    // TODO: check if we want to rewind a bit
+
     // avoid blanks
     if (text.length == 0) return;
 
@@ -125,8 +127,8 @@ function seekToNote(index) {
     // get the time of the note
     let time = ANNOTATIONS[index].Time;
 
-    // seek to 5 seconds before the time
-    player.seekTo((time - 5) > 0 ? time - 5 : 0);
+    // seek to the time
+    player.seekTo(time);
 
     // play the video
     player.playVideo();
@@ -142,29 +144,115 @@ function pauseVideo() {
     player.pauseVideo();
 }
 
-// pause and play with space
-let paused = false;
-document.body.onkeyup = function (e){
+let isShiftDown = false;
+document.body.onkeydown = function (e) {
+    // if we hit shift
+    if (e.keyCode == 16)
+        isShiftDown = true;
+}
+
+document.body.onkeyup = function (e) {
+    // if we let go of shift
+    if (e.keyCode == 16) isShiftDown = false;
+
     // if we are typing
     if (document.activeElement.id == "combo-text") {
         // enter key posts notation
         if (e.keyCode == 13) {
             postNotation();
-            document.activeElement.blur();
+
+            // unfocus text
+            document.getElementById("combo-text").blur();
+
+            // resume the video
+            player.playVideo();
         }
     }
+    
     // we are watching video
     else {
-        // space bar to pause and play
+        // if they hit space, toggle playback
         if (e.keyCode == 32) {
-            if (paused) player.playVideo();
-            else player.pauseVideo();
-
-            paused = !paused;
+            if (player.getPlayerState() == 1) player.pauseVideo();
+            else player.playVideo();
         }
-        // enter to focus input on text (and start typing)
-        else if (e.keyCode == 13) {
+
+        // if any key other than a special input
+        else if (
+            e.key.length == 1
+        )
+        {
+            player.pauseVideo();
+
+            // focus text box
             document.getElementById("combo-text").focus();
+
+            // insert that character into the text box
+            document.getElementById("combo-text").value += e.key;
+        }
+
+        // left key rewinds video by 5 seconds
+        else if (e.keyCode == 37) {
+            // get the current time
+            let time = player.getCurrentTime();
+
+            // rewind 5 seconds
+            player.seekTo(time - 5);
+
+            e.preventDefault();
+        }
+
+        // right key fast forwards video by 5 seconds
+        else if (e.keyCode == 39) {
+            // get the current time
+            let time = player.getCurrentTime();
+
+            // fast forward 5 seconds
+            player.seekTo(time + 5);
+
+            e.preventDefault();
+        }
+
+        // if shift is held down
+        else if (e.shiftKey) {
+            // down key slows the video down
+            if (e.keyCode == 40) {
+                // get the current playback rate
+                let rate = player.getPlaybackRate();
+
+                // slow down the video
+                player.setPlaybackRate(rate - 0.25);
+
+                e.preventDefault();
+            }
+
+            // up key speeds the video up
+            else if (e.keyCode == 38) {
+                // get the current playback rate
+                let rate = player.getPlaybackRate();
+
+                // speed up the video
+                player.setPlaybackRate(rate + 0.25);
+
+                e.preventDefault();
+            }
         }
     }
 }
+
+// get the text box
+let textBox = document.getElementById("combo-text");
+
+// run function every second
+setInterval(function () {
+    // get the video time
+    let time = player.getCurrentTime();
+    if (time == 0) return;
+
+    // set the textbox placeholder to the video time
+    textBox.placeholder = "Leave note @" + getNoteTime(time) + " ...";
+}, 1000);
+
+window.addEventListener("selectstart", function (event) {
+    if (!isShiftDown) event.preventDefault();
+});

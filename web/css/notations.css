@@ -1,11 +1,21 @@
 .notation-wrapper {
-    overflow-y: scroll;
+    display: flex;
+    height: 0px;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 350px;
 }
 
 .notation-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#notations {
+    overflow-y: scroll;
+    height: 100%;
 }
 
 #notations .header {

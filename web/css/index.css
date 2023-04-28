@@ -71,17 +71,20 @@ input[type=text] {
 
 #player {
     width: 100vw;
-    height: 100vw;
-    flex-shrink: 0;
+    height: fit-content;
 }
 
-.notation-wrapper {
-    flex-grow: 1;
+.bottom-bar {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    width: 100%;
 }
 
 .combo-input {
     display: flex;
-    margin: 1rem;
+    flex-basis: 100%;
+    padding: 1rem;
 }
 
 #combo-text {
@@ -93,8 +96,8 @@ input[type=text] {
 }
 
 .made-with-heart a {
-    font-weight: bold;
     align-self: flex-end;
+    font-weight: bold;
 }
 
 .heart {
@@ -103,6 +106,22 @@ input[type=text] {
 
 *:focus {
     outline: none;
+}
+
+.info {
+    background-color: var(--color-header);
+    border-radius: .5rem;
+    color: var(--color-background);
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0.25rem;
+    padding-top: 0;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+.heavy {
+    font-weight: bold;
 }
 
 @media only screen and (orientation: landscape) {

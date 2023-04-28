@@ -4,7 +4,6 @@ function create() {
 
     // get the v parameter from the comboText url using regex
     var videoId = comboText.match(/v=([^&]*)/)[1];
-    console.log(videoId);
     // check if we failed to parse the video id with the split
     if (videoId == null) {
         // try matching with a different regex
